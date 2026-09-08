@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adhan – Horaires de prière</title>
+<style>
+  /* ========== RESET & BASE ========== */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    line-height: 1.6;
+    color: #1c1c1e;
+    text-align: center;
+    background-color: #ffffff;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ========== TYPOGRAPHIE ========== */
+  h1 {
+    font-size: 2.4em;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin-bottom: 8px;
+  }
+
+  h2 {
+    font-size: 1.6em;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin: 50px 0 20px;
+  }
+
+  p {
+    font-size: 1.1em;
+    color: #3a3a3c;
+    margin-bottom: 20px;
+  }
+
+  .subtitle {
+    font-size: 1.25em;
+    color: #6e6e73;
+    margin-bottom: 30px;
+  }
+
+  /* ========== HERO / EN-TÊTE ========== */
+  .hero {
+    margin-bottom: 40px;
+  }
+
+  .app-icon {
+    width: 120px;
+    height: 120px;
+    border-radius: 24px;
+    margin-bottom: 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    display: inline-block;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  }
+
+  /* ========== BOUTONS ========== */
+  .links {
+    margin: 2em 0 3em;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+  }
+
+  a.button {
+    display: inline-block;
+    padding: 14px 24px;
+    background: #007aff;
+    color: white;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 600;
+    width: 280px;
+    text-align: center;
+    transition: background 0.2s ease, transform 0.1s ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  a.button:hover {
+    background: #0066d6;
+    transform: scale(1.02);
+  }
+
+  a.button.secondary {
+    background: #f2f2f7;
+    color: #007aff;
+  }
+
+  a.button.secondary:hover {
+    background: #e5e5ea;
+  }
+
+  /* ========== CARTES & GRILLES ========== */
+  .features {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    margin: 40px 0;
+  }
+
+  .feature-item {
+    background: #f9f9fb;
+    padding: 24px 20px;
+    border-radius: 16px;
+    text-align: left;
+    transition: box-shadow 0.2s ease;
+  }
+
+  .feature-item:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  }
+
+  .feature-item h3 {
+    font-size: 1.2em;
+    margin-bottom: 8px;
+    color: #1c1c1e;
+  }
+
+  .feature-item p {
+    font-size: 0.95em;
+    color: #6e6e73;
+    margin-bottom: 0;
+  }
+
+  /* ========== ÉTAPES ========== */
+  .steps {
+    text-align: left;
+    margin: 40px 0;
+    padding: 24px 20px;
+    background: #f9f9fb;
+    border-radius: 16px;
+  }
+
+  .steps ol {
+    padding-left: 20px;
+    counter-reset: step-counter;
+    list-style: none;
+  }
+
+  .steps li {
+    counter-increment: step-counter;
+    margin-bottom: 14px;
+    font-size: 1.05em;
+    color: #3a3a3c;
+    position: relative;
+    padding-left: 36px;
+  }
+
+  .steps li::before {
+    content: counter(step-counter);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 26px;
+    height: 26px;
+    background: #007aff;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85em;
+    font-weight: 600;
+  }
+
+  /* ========== FAQ ========== */
+  .faq {
+    margin: 40px 0;
+    text-align: left;
+  }
+
+  .faq details {
+    background: #f9f9fb;
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin-bottom: 10px;
+    transition: background 0.2s ease;
+  }
+
+  .faq summary {
+    font-weight: 600;
+    cursor: pointer;
+    color: #1c1c1e;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .faq details[open] {
+    background: #f2f2f7;
+  }
+
+  .faq p {
+    margin: 12px 0 0;
+    font-size: 0.95em;
+    color: #6e6e73;
+  }
+
+  /* ========== PIED DE PAGE ========== */
+  footer {
+    margin-top: 60px;
+    padding-top: 20px;
+    border-top: 1px solid #e5e5ea;
+    font-size: 0.9em;
+    color: #8e8e93;
+  }
+
+  footer a {
+    color: #007aff;
+    text-decoration: none;
+    margin: 0 10px;
+  }
+
+  footer a:hover {
+    text-decoration: underline;
+  }
+
+  /* ========== RESPONSIVE ========== */
+  @media (max-width: 480px) {
+    h1 { font-size: 2em; }
+    .subtitle { font-size: 1.1em; }
+    a.button { width: 100%; }
+    .app-icon { width: 100px; height: 100px; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- ========== HERO ========== -->
+  <div class="hero">
+    <!-- Logo de l'application (fichier AppIcon-1024.png à placer à la racine du dépôt) -->
+    <img class="app-icon" src="AppIcon-1024.png" alt="Icône Adhan" width="120" height="120">
+    <h1>Adhan</h1>
+    <p class="subtitle">Horaires de prière précis et fiables, où que vous soyez.</p>
+    <p>Restez connecté à votre foi avec des horaires de prière exacts, des rappels personnalisés et une boussole Qibla intégrée. Simple, élégant et respectueux de votre vie privée.</p>
+  </div>
+
+  <!-- ========== BOUTONS PRINCIPAUX ========== -->
+  <div class="links">
+    <a class="button" href="#telecharger">Télécharger sur l'App Store</a>
+    <a class="button secondary" href="#fonctionnalites">Découvrir les fonctionnalités</a>
+  </div>
+
+  <!-- ========== FONCTIONNALITÉS ========== -->
+  <h2 id="fonctionnalites">Fonctionnalités</h2>
+  <div class="features">
+    <div class="feature-item">
+      <h3>🕌 Horaires de prière précis</h3>
+      <p>Calcul automatique basé sur votre position géographique avec plusieurs méthodes de calcul disponibles.</p>
+    </div>
+    <div class="feature-item">
+      <h3>🔔 Rappels personnalisés</h3>
+      <p>Recevez des notifications pour chaque prière avec la possibilité de choisir des sons d'adhan différents.</p>
+    </div>
+    <div class="feature-item">
+      <h3>🧭 Boussole Qibla</h3>
+      <p>Trouvez la direction de La Mecque instantanément avec notre boussole précise et facile à utiliser.</p>
+    </div>
+    <div class="feature-item">
+      <h3>📅 Calendrier islamique</h3>
+      <p>Consultez les dates importantes du calendrier hégirien et les événements religieux à venir.</p>
+    </div>
+    <div class="feature-item">
+      <h3>🌍 Localisation automatique</h3>
+      <p>Détection automatique de votre ville ou recherche manuelle parmi des milliers de localisations.</p>
+    </div>
+    <div class="feature-item">
+      <h3>🔒 Confidentialité totale</h3>
+      <p>Aucune collecte de données personnelles. Toutes les informations restent sur votre appareil.</p>
+    </div>
+  </div>
+
+  <!-- ========== COMMENT ÇA MARCHE ========== -->
+  <h2>Comment ça marche</h2>
+  <div class="steps">
+    <ol>
+      <li>Téléchargez l'application et autorisez la localisation.</li>
+      <li>Choisissez votre méthode de calcul préférée.</li>
+      <li>Activez les rappels pour ne jamais manquer une prière.</li>
+      <li>Utilisez la boussole Qibla pour vous orienter correctement.</li>
+    </ol>
+  </div>
+
+  <!-- ========== FAQ ========== -->
+  <h2>Questions fréquentes</h2>
+  <div class="faq">
+    <details>
+      <summary>Comment sont calculés les horaires de prière ?</summary>
+      <p>Les horaires sont calculés selon votre position géographique et la méthode de calcul choisie (musulmans du monde, Ligue islamique mondiale, etc.).</p>
+    </details>
+    <details>
+      <summary>Puis-je utiliser l'application hors ligne ?</summary>
+      <p>Oui, une fois les horaires téléchargés, vous pouvez les consulter sans connexion internet.</p>
+    </details>
+    <details>
+      <summary>L'application collecte-t-elle mes données ?</summary>
+      <p>Non, Adhan ne collecte aucune donnée personnelle. Toutes les informations restent sur votre appareil conformément à notre politique de confidentialité.</p>
+    </details>
+    <details>
+      <summary>Quelles méthodes de calcul sont disponibles ?</summary>
+      <p>Nous proposons plusieurs méthodes : Ligue islamique mondiale, Autorité générale égyptienne, Université des sciences islamiques de Karachi, et plus encore.</p>
+    </details>
+  </div>
+
+  <!-- ========== APPEL À L'ACTION ========== -->
+  <h2 id="telecharger">Prêt à rester connecté ?</h2>
+  <p>Téléchargez Adhan gratuitement et ne manquez plus jamais une prière.</p>
+  <div class="links">
+    <a class="button" href="#">Télécharger sur l'App Store</a>
+  </div>
+
+  <!-- ========== PIED DE PAGE ========== -->
+  <footer>
+    <p>
+      <a href="adhan-support.html">Support</a>
+      <span>•</span>
+      <a href="adhan-privacy.html">Politique de confidentialité</a>
+      <span>•</span>
+      <a href="adhan-terms.html">Conditions d'utilisation</a>
+    </p>
+    <p>© 2025 Adhan. Tous droits réservés.</p>
+  </footer>
+
+</body>
+</html>
